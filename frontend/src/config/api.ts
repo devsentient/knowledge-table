@@ -17,7 +17,7 @@ export const documentSchema = z
 export async function uploadFile(file: File) {
   const formData = new FormData();
   formData.append("file", file);
-  const result = await fetch("http://localhost:8000/api/v1/document", {
+  const result = await fetch(`${process.env.API_URL}/api/v1/document`, {
     method: "POST",
     body: formData
   });
@@ -27,7 +27,7 @@ export async function uploadFile(file: File) {
 // Delete document
 
 export async function deleteDocument(id: string) {
-  await fetch(`http://localhost:8000/api/v1/document/${id}`, {
+  await fetch(`${process.env.API_URL}/api/v1/document/${id}`, {
     method: "DELETE"
   });
 }
@@ -64,7 +64,7 @@ export async function runQuery(
   prompt: Prompt,
   previousAnswer?: number | string | boolean | number[] | string[]
 ) {
-  const result = await fetch("http://localhost:8000/api/v1/query", {
+  const result = await fetch(`${process.env.API_URL}/api/v1/query`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -101,7 +101,7 @@ export async function exportTriples(tableData: any) {
     }
   }
 
-  return fetch("http://localhost:8000/api/v1/graph/export-triples", {
+  return fetch(`${process.env.API_URL}/api/v1/graph/export-triples`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

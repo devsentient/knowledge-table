@@ -4,6 +4,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
+  define: {
+    'process.env': process.env
+  },
   css: {
     modules: {
       localsConvention: "camelCaseOnly"
